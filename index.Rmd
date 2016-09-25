@@ -1,0 +1,58 @@
+--- 
+title       : Wage Explorer
+subtitle    : Developing Data Products Course Project
+author      : Tahmoores Mazhari
+job         : Coursera Student
+framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
+highlighter : highlight.js  # {highlight.js, prettify, highlight}
+hitheme     : tomorrow      # 
+widgets     : []            # {mathjax, quiz, bootstrap}
+mode        : selfcontained # {standalone, draft}
+knit        : slidify::knit2slides
+--- 
+
+## Introduction
+
+This presentation is to pitch the project of "Developing Data Products" course. The last course in Data Science Specialization offered through coursera.com. In this project we have created a Shiny application called "Wage Explorer" using the Shiny framework and have it hosted online. This presentation is to provide a brief information on this application and the data that it uses.
+
+The Wage Explorer Shiny application can be accessed at:  
+[https://tmazhari.shinyapps.io/Shiny-App/](https://tmazhari.shinyapps.io/Shiny-App/)
+
+Source code for this application is available on Github at:  
+[https://github.com/tmazhari/Developing-Data-Products_Course-Project](https://github.com/tmazhari/Developing-Data-Products_Course-Project)
+
+--- .class #id 
+
+## Wage Explorer
+
+This application displays an interactive plot. In this plot user can investigate the distribution of wage amount per an optional variable (x-axis) and then color the plot conditional on another variable (color). 
+User may change the x-axis variable by selecting an option from "X-axis Variable" dropdown and change the color variable by picking an option from "Color Legend variable" dropdown. By changing these two variables the diagram updates and new results get displayed.
+
+Note that if x-axis is set as "Age", then user has an option to add regression smoothers to the plot. When this option is checked, the application fits a linear model for every class in color variable. So it can be better seen if there is a different relationship for different x-axis groups.
+
+---
+
+## Wage Dataset
+
+The application uses Wage dataset available in ISLR package in R. This dataset includes Wage and 11 other variables for a group of 3000 workers in the Mid-Atlantic region. This data was manually assembled by Steve Miller from the March 2011 Supplement to Current Population Survey data. Here is the structure of this dataset.
+
+```{r echo=FALSE}
+library(datasets)
+library(ISLR)
+data("Wage")
+str(Wage)
+```
+
+---
+
+## Pairs Plot
+
+This plot shows empirical correlation between wage and some other variables from dataset. 
+
+```{r echo=FALSE}
+library(caret)
+```
+
+```{r}
+featurePlot(x=Wage[,c("year","age","education","jobclass")], y=Wage$wage, plot="pairs")
+```

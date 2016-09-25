@@ -1,0 +1,10 @@
+base
+ggplot2
+devtools
+slidify
+knitr
+shiny
+markdown
+ISLR
+lattice
+caret
